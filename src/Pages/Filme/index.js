@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useNavigate, useParams } from "react-router-dom";
 import './filme-info.css';
+import {toast} from 'react-toastify'
 
 export function Filme() {
     const { id } = useParams();
@@ -31,13 +32,29 @@ export function Filme() {
         const hasFilm = filmesSalvos.some( (filmeSalvos) => filmeSalvos.id === filme.id )
 
         if(hasFilm){
-            alert("ESSE FILME JÁ ESTÁ NA LISTA")
+            toast.warn("Esse filme já está na lista", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
             return;
         }
 
         filmesSalvos.push(filme);
         localStorage.setItem("@williflix", JSON.stringify(filmesSalvos))
-        alert("FILME SALVO COM SUCESSO")
+        toast.success("Filme salvo com sucesso", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            })
     }
 
     if(loading) {
