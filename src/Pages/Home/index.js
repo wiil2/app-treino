@@ -8,6 +8,7 @@ import "./home.css"
 export function Home() {
 
     const [filmes, setFilmes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(()=> {
 
@@ -16,11 +17,21 @@ export function Home() {
                 params: {api_key: "112352509eac962fa4c0d1e70eafccb4", language: "pt-BR", page: 1,}})
             //console.log(response.data.results.slice(0, 10))
             setFilmes(response.data.results.slice(0, 10));
+            setLoading(false);
             console.log(response.data)
         }
         loadFilmes();
         
+        
     }, []);
+
+    if(loading) {
+        return (
+            <div className="loading">
+                <h1>Carregando detalhes...</h1>
+            </div>
+        )
+    }
 
     return ( 
         <div>
