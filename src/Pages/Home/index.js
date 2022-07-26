@@ -16,8 +16,10 @@ export function Home() {
                 params: {api_key: "112352509eac962fa4c0d1e70eafccb4", language: "pt-BR", page: 1,}})
             //console.log(response.data.results.slice(0, 10))
             setFilmes(response.data.results.slice(0, 10));
+            console.log(response.data)
         }
         loadFilmes();
+        
     }, []);
 
     return ( 
